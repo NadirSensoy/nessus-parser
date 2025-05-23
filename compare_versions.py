@@ -130,6 +130,7 @@ for folder in folders:
             # Karşılaştırmalar
             only_in_old = ips1 - ips2
             only_in_new = ips2 - ips1
+            common_ips = ips1 & ips2  # Her iki dosyada da bulunan ortak IP'ler
 
             # Dosya tipini çıkarmak için (mixed, ips, ports)
             base_name = file_type.replace('.txt', '')
@@ -152,6 +153,13 @@ for folder in folders:
                         outfile.write(', '.join(sorted(only_in_new)))
                     else:
                         outfile.write("(Fark bulunamadı)")
+                    
+                    # Her iki dosyada da bulunan ortak IP'ler
+                    outfile.write(f"\n\n# Her iki dosyada da bulunan ortak IP'ler ({len(common_ips)} IP):\n")
+                    if common_ips:
+                        outfile.write(', '.join(sorted(common_ips)))
+                    else:
+                        outfile.write("(Ortak IP bulunamadı)")
             
             # RAW KLASÖRÜNÜN KARŞILAŞTIRMALARI İÇİN RAW FORMAT
             if folder == "raw":
@@ -165,6 +173,11 @@ for folder in folders:
                     # İkinci bölüm: Yeni dosyada olup eski dosyada olmayanlar
                     outfile.write(f"\n# {new_file} içinde olup {old_file} içinde olmayanlar:\n")
                     for ip in sorted(only_in_new):
+                        outfile.write(f"{ip}\n")
+                    
+                    # Üçüncü bölüm: Her iki dosyada da bulunan ortak IP'ler
+                    outfile.write(f"\n# Her iki dosyada da bulunan ortak IP'ler:\n")
+                    for ip in sorted(common_ips):
                         outfile.write(f"{ip}\n")
         else:
             # Eğer dosyalar yoksa uyarı ver
