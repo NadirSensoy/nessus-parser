@@ -36,6 +36,7 @@
    - Her karşılaştırma dosyasında:
      * İlk dosyada olup ikinci dosyada olmayan IP'ler
      * İkinci dosyada olup ilk dosyada olmayan IP'ler
+     * Her iki dosyada da bulunan ortak IP'ler
 
 6- clean.bat dosyasını çalıştırarak input.txt'nin içeriğini ve tüm oluşturulan klasörleri (raw, output, raw-comparison, output-comparison) temizleyebilirsiniz.
 
@@ -75,11 +76,18 @@ raw-comparison/eski-vs-yeni-mixed-comparison.txt örneği:
 # yeni-mixed.txt içinde olup eski-mixed.txt içinde olmayanlar:
 192.168.1.4:8080
 
+# Her iki dosyada da bulunan ortak IP'ler:
+192.168.1.2:443
+192.168.1.3:22
+
 output-comparison/eski-vs-yeni-mixed-comparison.txt örneği:
 # eski-mixed.txt içinde olup yeni-mixed.txt içinde olmayanlar (2 IP):
 192.168.1.1:80, 192.168.1.5:21
 
 # yeni-mixed.txt içinde olup eski-mixed.txt içinde olmayanlar (1 IP):
 192.168.1.4:8080
+
+# Her iki dosyada da bulunan ortak IP'ler (2 IP):
+192.168.1.2:443, 192.168.1.3:22
 
 Hayırlı raporlamalar - by revivalist :()
