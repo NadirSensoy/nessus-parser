@@ -79,6 +79,7 @@ try:
                     ip = match.group(1)
                     port = match.group(2)
                     ip_port_dict[ip] = port
+                    all_ports.add(port)  # Bu satırı ekleyin
                     filtered_lines.append(f"{ip}:{port}")
                     continue
                     
